@@ -1,6 +1,6 @@
-package com.example.recruitment.appuser;
+package com.example.recruitment.user;
 
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,38 +10,36 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
-public class AppUser implements UserDetails {
+@AllArgsConstructor
+@Entity
+@Table(name = "person")
+public class User implements UserDetails {
 
-    private Long personId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "person_id")
+    private Integer id;
     private String name;
     private String surname;
+    private String pnr;
+    private String email;
     private String username;
     private String password;
-    private AppUserRole appUserRole;
-    private Boolean locked;
-    private Boolean enabled;
 
-    public AppUser(String name, String surname, String username, String password, AppUserRole appUserRole, Boolean locked, Boolean enabled) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
-    }
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.DETACH }, optional = false)
+    @JoinColumn(name="role_id")
+    private Role role;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
-        return Collections.singletonList(authority);
+        return List.of(new SimpleGrantedAuthority(role.getName()));
     }
 
     @Override
@@ -61,7 +59,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return true;
     }
 
     @Override
@@ -71,6 +69,6 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 }
