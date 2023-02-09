@@ -1,4 +1,4 @@
-package com.example.recruitment.user;
+package com.example.recruit.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,5 +20,14 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/signup")
+    public String signup() {
+        return "signup";
+    }
+
+    @GetMapping("/applications")
+    public String applications() {
+        return "applications";
+    }
 
 }
