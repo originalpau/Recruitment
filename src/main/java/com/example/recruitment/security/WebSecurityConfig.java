@@ -1,7 +1,9 @@
-package com.example.recruitment.security;
+package com.example.recruit.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -16,7 +18,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/applications").hasAuthority("recruiter")
+                .antMatchers("/home").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -30,6 +33,7 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

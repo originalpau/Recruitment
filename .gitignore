@@ -56,6 +56,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### database config ###
-/src/main/resources/application.properties
