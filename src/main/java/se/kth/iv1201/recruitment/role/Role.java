@@ -1,7 +1,8 @@
-package se.kth.iv1201.recruitment.user;
+package se.kth.iv1201.recruitment.role;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import se.kth.iv1201.recruitment.user.User;
 
 import javax.persistence.*;
 import java.util.HashSet;
