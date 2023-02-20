@@ -27,7 +27,9 @@ public class User implements UserDetails {
     private String name;
     private String surname;
     private String pnr;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String username;
     private String password;
 
@@ -36,6 +38,16 @@ public class User implements UserDetails {
     @JoinColumn(name="role_id")
     private Role role;
 
+    public User(String name, String surname, String pnr, String email, String username, String password, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.pnr = pnr;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.role.setId(2);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
