@@ -3,6 +3,10 @@
     <title>Spring Security Example </title>
 </head>
 <body>
+<div th:if="${param.successRegister}">
+    Registration successful!
+</div>
+
 <div th:if="${param.error}">
     Invalid username and password.
 </div>

@@ -1,4 +1,4 @@
-package se.kth.iv1201.recruitment.user;
+package se.kth.iv1201.recruitment.auth;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,13 +6,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import se.kth.iv1201.recruitment.role.Role;
+import se.kth.iv1201.recruitment.role.RoleRepository;
+import se.kth.iv1201.recruitment.user.User;
+import se.kth.iv1201.recruitment.user.UserRepository;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class AuthService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG = "user with username %s not found";
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -21,17 +27,23 @@ public class UserService implements UserDetailsService {
                 new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)));
     }
 
-    public User register(User user) {
-        if(userExists(user)) {
+    @Transactional
+    public User register(AuthUserDTO userDTO) {
+        if(userExists(userDTO)) {
             throw new IllegalStateException("email already taken");
         }
+
+        Role applicant = roleRepository.findByName("applicant");
+
+        User user = userDTO.toUser();
+        user.setRole(applicant);
         encodePassword(user);
-        userRepository.save(user);
-        return user;
+
+        return userRepository.save(user);
     }
 
-    private boolean userExists(User user) {
-        return userRepository.findByEmail(user.getEmail()).isPresent();
+    private boolean userExists(AuthUserDTO userDTO) {
+        return userRepository.findByEmail(userDTO.getEmail()).isPresent();
     }
 
     private void encodePassword(User user) {

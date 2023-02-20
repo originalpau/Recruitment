@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import se.kth.iv1201.recruitment.role.Role;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -38,15 +39,13 @@ public class User implements UserDetails {
     @JoinColumn(name="role_id")
     private Role role;
 
-    public User(String name, String surname, String pnr, String email, String username, String password, Role role) {
+    public User(String name, String surname, String pnr, String email, String username, String password) {
         this.name = name;
         this.surname = surname;
         this.pnr = pnr;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.role = role;
-        this.role.setId(2);
     }
 
     @Override

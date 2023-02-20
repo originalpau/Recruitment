@@ -1,17 +1,13 @@
-package se.kth.iv1201.recruitment.registration;
+package se.kth.iv1201.recruitment.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import se.kth.iv1201.recruitment.user.Role;
 import se.kth.iv1201.recruitment.user.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-public class RegisterForm {
+public class AuthUserDTO {
     @NotEmpty(message = "First name is required")
     private String name;
     @NotEmpty(message = "Last name is required")
@@ -32,7 +28,6 @@ public class RegisterForm {
                 pnr,
                 email.toLowerCase(),
                 username,
-                password,
-                new Role());
+                password);
     }
 }
