@@ -3913,16 +3913,16 @@ COPY public.competence_profile (competence_profile_id, person_id, competence_id,
 --
 
 COPY public.person (person_id, name, surname, pnr, email, password, role_id, username) FROM stdin;
-1	Joelle	Wilkinson	\N	\N	LiZ98qvL8Lw	1	JoelleWilkinson
-2	Martin	Cummings	\N	\N	QkK48drV2Da	1	MartinCummings
-3	Dante	Mason	\N	\N	EyD84euX5Nj	1	DanteMason
-4	Risa	Mayer	\N	\N	VdE34mqY2Xy	1	RisaMayer
-5	Maxwell	Bailey	\N	\N	NmK87boS4Lf	1	MaxwellBailey
-6	Emi	Flowers	\N	\N	LqK20ygU3Lw	1	EmiFlowers
-7	Hedley	Arnold	\N	\N	OjP41mkY3Vb	1	HedleyArnold
-8	Armand	Todd	\N	\N	LbH38urF4Kn	1	ArmandTodd
-9	Phillip	Ramsey	\N	\N	XoH15hnY3Bw	1	PhillipRamsey
-10	Austin	Mueller	\N	\N	MvZ46kfC1Kr	1	AustinMueller
+1	Joelle	Wilkinson	\N	\N	$2a$10$E0gTYXAEaryJVFgiFtz4UOmF4SWC/Q.obhONcoozseb6G9AipDHoW	1	JoelleWilkinson
+2	Martin	Cummings	\N	\N	$2a$10$YNiFrbzZchUP4egPotW.beH0Cjt.LTH4IBPJP41f2fzKy0c1hKjvq	1	MartinCummings
+3	Dante	Mason	\N	\N	$2a$10$/nmIm0f3.765LPEnZp6DceYTMA3bT2F33XwL5JEvHqyACeQD7M1Ye	1	DanteMason
+4	Risa	Mayer	\N	\N	$2a$10$tNPXnRX5ZFEFAUcTV94iV.iLpCjSEUfGnWbALvRHkKt/mqsONgYb.	1	RisaMayer
+5	Maxwell	Bailey	\N	\N	$2a$10$XMwc8g2376o9hUCvHzfAr.CZc4nWLvwgtpQlv4dnVCPWeYhnDohgC	1	MaxwellBailey
+6	Emi	Flowers	\N	\N	$2a$10$fgkNJtQiL7D9Dids.EsCzORg9wxnf6ZYnCo489axw7izj3KTdpESK	1	EmiFlowers
+7	Hedley	Arnold	\N	\N	$2a$10$GmEt/NsjjX9zUVHeSgmd/uznnWIrFsOMnF/AJwnYtbnvAESeR.fVi	1	HedleyArnold
+8	Armand	Todd	\N	\N	$2a$10$wvd3dOHHLe4XEmypaX3t4.oW4d97u23xtS2JxMyg9sRfLl0VdPYrm	1	ArmandTodd
+9	Phillip	Ramsey	\N	\N	$2a$10$/teUpGOEztO9QPG0M3Cil.vXbh205mCsPGJ9pNBKo3KHLa6jxBtCS	1	PhillipRamsey
+10	Austin	Mueller	\N	\N	$2a$10$BDmMBz9JmyUwH7kV28D2zOWZr6kdevb.HnFBzQPndQ8cxMT5oSmp.	1	AustinMueller
 11	Leroy	Crane	20070114-1252	l_crane118@finnsinte.se	\N	2	\N
 12	Aristotle	Meadows	20030413-5765	a-meadows7789@finnsinte.se	\N	2	\N
 13	Tucker	Travis	20090317-7750	tucker-travis2407@finnsinte.se	\N	2	\N
