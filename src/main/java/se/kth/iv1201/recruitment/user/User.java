@@ -13,6 +13,10 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * User model class, modeling a user from the database and includes methods for asserting the validity of the account.
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -53,31 +57,61 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority(role.getName()));
     }
 
+    /**
+     * Get function for the password of the user.
+     *
+     * @return password of user
+     */
     @Override
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Get function for the username of the user.
+     *
+     * @return username of user
+     */
     @Override
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Validates that the account is still active. At this time, no account expires.
+     *
+     * @return true
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /**
+     * Validates that the account is not locked. At this time, no account is locked.
+     *
+     * @return true
+     */
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    /**
+     * Validates that the account's password is not expired. At this time, no passwords expire.
+     *
+     * @return true
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * Validates that the account is still enabled. At this time, no accounts stay enabled.
+     *
+     * @return true
+     */
     @Override
     public boolean isEnabled() {
         return true;
