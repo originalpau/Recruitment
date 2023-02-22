@@ -6,6 +6,11 @@ import se.kth.iv1201.recruitment.user.User;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+//TODO: Validation of form.
+
+/**
+ * A form bean for the registration form.
+ */
 @Data
 public class AuthUserDTO {
     @NotEmpty(message = "First name is required")

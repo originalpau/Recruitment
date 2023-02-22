@@ -12,7 +12,16 @@ import se.kth.iv1201.recruitment.role.RoleRepository;
 import se.kth.iv1201.recruitment.user.User;
 import se.kth.iv1201.recruitment.user.UserRepository;
 
+/**
+ * This is the authentication service class, handling login and registration.
+ *
+ * Declarative transaction management is used. A transaction starts when a method is called from
+ * AuthController class, and ends (commit or rollback) when the method returns.
+ * The @Transactional annotation enables ACID properties and because of the dependency spring-boot-starter-data-jpa,
+ * Spring Transaction Management is enabled by default.
+ */
 @Service
+@Transactional
 @AllArgsConstructor
 public class AuthService implements UserDetailsService {
 
@@ -21,14 +30,26 @@ public class AuthService implements UserDetailsService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Searches for the person with the specified username.
+     * @param username The username of the person.
+     * @return User information data.
+     * @throws UsernameNotFoundException if the specified user wasn't found.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)));
     }
 
-    @Transactional
-    public User register(AuthUserDTO userDTO) {
+    /**
+     * Creates a new app user, with permissions of applicant.
+     * Encodes the user password before saving the data to the database.
+     * @param userDTO The user information.
+     * @return The newly created user.
+     * @throws IllegalStateException if the user is applying with an email that already exists in our database.
+     */
+    public User register(AuthUserDTO userDTO) throws IllegalStateException {
         if(userExists(userDTO)) {
             throw new IllegalStateException("email already taken");
         }
