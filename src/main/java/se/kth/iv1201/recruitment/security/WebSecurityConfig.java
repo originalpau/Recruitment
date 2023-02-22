@@ -9,16 +9,26 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Configurations to secure our web app.
+ * Handles authorization, authentication and protection for common attacks, with the Spring Security framework.
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+    /**
+     * Configurations using Spring Security's FilterChain.
+     * All requests going to /register, /login and /error are permitted without being authenticated first.
+     * Any other pages cannot be accessed before successful authentication.
+     * Requests to /applications are only allowed if the user has role "recruiter".
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/applications").hasAuthority("recruiter")
-                .antMatchers("/home", "/register**", "/js/**", "/css/**", "/img/**").permitAll()
+                .antMatchers("/register**", "/error", "/js/**", "/css/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -34,6 +44,9 @@ public class WebSecurityConfig {
     }
 
 
+    /**
+     * Encodes passwords with Bcrypt hashing function.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
