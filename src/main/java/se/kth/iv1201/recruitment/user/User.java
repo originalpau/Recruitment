@@ -43,6 +43,16 @@ public class User implements UserDetails {
     @JoinColumn(name="role_id")
     private Role role;
 
+    /**
+     * Sets all values available for the modeled user from table "person".
+     *
+     * @param name string from column "name"
+     * @param surname string from column "surname"
+     * @param pnr int from column "pnr"
+     * @param email string from column "email"
+     * @param username string from column "username"
+     * @param password string from column "password"
+     */
     public User(String name, String surname, String pnr, String email, String username, String password) {
         this.name = name;
         this.surname = surname;
