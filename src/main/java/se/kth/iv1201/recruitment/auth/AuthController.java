@@ -3,6 +3,7 @@ package se.kth.iv1201.recruitment.auth;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,8 +44,20 @@ public class AuthController {
      * @return The registration page with a confirmation message if the registration succeeds.
      */
     @PostMapping("/register")
-    public String register(@ModelAttribute("userDTO") @Valid AuthUserDTO userDTO) {
-        authService.register(userDTO);
+    public String register(@ModelAttribute("userDTO") @Valid AuthUserDTO userDTO, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("registrationForm", userDTO);
+            return "register";
+        }
+
+        try {
+            authService.register(userDTO);
+        } catch (IllegalStateException e) {
+            bindingResult.rejectValue("email", "userDTO.email", "Email already registered.");
+            model.addAttribute("registrationForm", userDTO);
+            return "register";
+        }
+
         return "redirect:/register?success";
     }
 
