@@ -9,6 +9,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Role model for authentication.
+ *
+ */
+
 @Getter
 @Setter
 @ToString
@@ -27,6 +32,12 @@ public class Role {
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 
+    /**
+     * Compares the roles of users to the roles available to confirm authorization.
+     *
+     * @param o role of an object
+     * @return boolean confirmed or denied authorization
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,6 +46,11 @@ public class Role {
         return id != null && Objects.equals(id, role.id);
     }
 
+    /**
+     * Get function for the hash code of the user set.
+     *
+     * @return hashcode of user
+     */
     @Override
     public int hashCode() {
         return getClass().hashCode();
