@@ -51,9 +51,6 @@ public class AuthService implements UserDetailsService {
      * @throws IllegalStateException if the user is applying with an email that already exists in our database.
      */
     public User register(AuthUserDTO userDTO) throws IllegalStateException {
-        if(userExists(userDTO)) {
-            throw new IllegalStateException("email already taken");
-        }
 
         Role applicant = roleRepository.findByName("applicant");
 
@@ -64,7 +61,23 @@ public class AuthService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    private boolean userExists(AuthUserDTO userDTO) {
+    /**
+     * Checks if the username already exists in our database.
+     *
+     * @param userDTO The user data object.
+     * @return true if username exist, or false otherwise.
+     */
+    public boolean usernameExists(AuthUserDTO userDTO) {
+        return userRepository.findByUsername(userDTO.getUsername()).isPresent();
+    }
+
+    /**
+     * Checks if the email already exists in our database.
+     *
+     * @param userDTO The user data object.
+     * @return true if the email exist, or false otherwise.
+     */
+    public boolean emailExists(AuthUserDTO userDTO) {
         return userRepository.findByEmail(userDTO.getEmail()).isPresent();
     }
 
