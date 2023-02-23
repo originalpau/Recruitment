@@ -47,11 +47,10 @@ public class AuthController {
      *
      * @param userDTO Content of the register user form.
      * @param bindingResult Validation results for the register form.
-     * @param model Model objects used by the register page.
      * @return The registration page with a confirmation message if the registration succeeds.
      */
     @PostMapping("/register")
-    public String register(@ModelAttribute("userDTO") @Valid AuthUserDTO userDTO, BindingResult bindingResult, Model model) {
+    public String register(@ModelAttribute("userDTO") @Valid AuthUserDTO userDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "register";

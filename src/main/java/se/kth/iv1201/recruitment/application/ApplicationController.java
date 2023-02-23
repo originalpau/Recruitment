@@ -1,4 +1,4 @@
-package se.kth.iv1201.recruitment.user;
+package se.kth.iv1201.recruitment.application;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import se.kth.iv1201.recruitment.auth.AuthService;
 
 /**
- * Handles HTTP requests.
+ * Handles HTTP requests for applications.
  */
 @Controller
-public class UserController {
+public class ApplicationController {
 
     /**
      * No page is specified, show home page.
