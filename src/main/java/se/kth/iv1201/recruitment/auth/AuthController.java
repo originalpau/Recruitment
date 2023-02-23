@@ -20,6 +20,7 @@ public class AuthController {
 
     /**
      * A get request for the login page.
+     * 
      * @return The login page url.
      */
     @GetMapping("/login")
@@ -29,6 +30,7 @@ public class AuthController {
 
     /**
      * A get request to show the registration form.
+     *
      * @param model Model objects used by the register page.
      * @return The registration page url.
      */
@@ -40,7 +42,10 @@ public class AuthController {
 
     /**
      * The registration form has been submitted.
+     *
      * @param userDTO Content of the register user form.
+     * @param bindingResult Validation results for the register form.
+     * @param model Model objects used by the register page.
      * @return The registration page with a confirmation message if the registration succeeds.
      */
     @PostMapping("/register")
