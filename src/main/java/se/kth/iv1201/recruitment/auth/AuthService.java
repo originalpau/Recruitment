@@ -45,6 +45,7 @@ public class AuthService implements UserDetailsService {
     /**
      * Creates a new app user, with permissions of applicant.
      * Encodes the user password before saving the data to the database.
+     *
      * @param userDTO The user information.
      * @return The newly created user.
      * @throws IllegalStateException if the user is applying with an email that already exists in our database.
