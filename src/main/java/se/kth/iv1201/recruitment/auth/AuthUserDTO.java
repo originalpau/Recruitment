@@ -38,6 +38,10 @@ public class AuthUserDTO {
     @NotEmpty(message = "Password is is required")
     private String password;
 
+    /**
+     * Creates a new user with the entered values from submitted register form.
+     * @return The newly created user.
+     */
     public User toUser() {
         return new User(name,
                 surname,
