@@ -13,7 +13,7 @@ Spring boot and Maven has been used to facilitate configurations. The database i
 4. Reload (or import) the Maven project in IntelliJ
 5. Start the application from `RecruitmentApplication.java` in IntelliJ
 
-___
+## Links
 ### Reference Documentation
 For further reference, please consider the following sections:
 
