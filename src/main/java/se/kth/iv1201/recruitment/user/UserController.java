@@ -11,9 +11,6 @@ import se.kth.iv1201.recruitment.auth.AuthService;
 @Controller
 public class UserController {
 
-    @Autowired
-    private AuthService authService;
-
     /**
      * No page is specified, show home page.
      *

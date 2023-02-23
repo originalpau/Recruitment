@@ -42,6 +42,8 @@ public class AuthController {
 
     /**
      * The registration form has been submitted.
+     * This method validates the fields,
+     * and ensures that the username and email are not registered in our system since before.
      *
      * @param userDTO Content of the register user form.
      * @param bindingResult Validation results for the register form.
@@ -50,19 +52,23 @@ public class AuthController {
      */
     @PostMapping("/register")
     public String register(@ModelAttribute("userDTO") @Valid AuthUserDTO userDTO, BindingResult bindingResult, Model model) {
+
         if (bindingResult.hasErrors()) {
-            model.addAttribute("registrationForm", userDTO);
             return "register";
         }
 
-        try {
-            authService.register(userDTO);
-        } catch (IllegalStateException e) {
+        if (authService.emailExists(userDTO)) {
             bindingResult.rejectValue("email", "userDTO.email", "Email already registered.");
-            model.addAttribute("registrationForm", userDTO);
             return "register";
         }
 
+
+        if (authService.usernameExists(userDTO)) {
+            bindingResult.rejectValue("username", "userDTO.username", "Username already taken.");
+            return "register";
+        }
+
+        authService.register(userDTO);
         return "redirect:/register?success";
     }
 
