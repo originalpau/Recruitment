@@ -48,9 +48,8 @@ public class AuthService implements UserDetailsService {
      *
      * @param userDTO The user information.
      * @return The newly created user.
-     * @throws IllegalStateException if the user is applying with an email that already exists in our database.
      */
-    public User register(AuthUserDTO userDTO) throws IllegalStateException {
+    public User register(AuthUserDTO userDTO) {
 
         Role applicant = roleRepository.findByName("applicant");
 
