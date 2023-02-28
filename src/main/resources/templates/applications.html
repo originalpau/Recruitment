@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Applications page</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
 </head>
 <body>
-Applications page: Used by recruiters to view applications and their status
+<div class="container">
+    <h3>List of applications</h3>
+    <hr/>
+    <table class="table table-bordered table-stripped">
+        <thead>
+            <tr>
+                <th> Surname </th>
+                <th> First name </th>
+                <th> Status </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="applications: ${applications}">
+                <td th:text="${applications.person_id.surname}"/>
+                <td th:text="${applications.person_id.name}"/>
+                <td th:text="${applications.status.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
