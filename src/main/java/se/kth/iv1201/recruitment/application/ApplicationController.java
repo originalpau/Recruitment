@@ -2,14 +2,18 @@ package se.kth.iv1201.recruitment.application;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import se.kth.iv1201.recruitment.auth.AuthService;
+
 
 /**
  * Handles HTTP requests for applications.
  */
 @Controller
 public class ApplicationController {
+
+    @Autowired
+    private ApplicationRepository applicationRepo;
 
     /**
      * No page is specified, show home page.
@@ -27,7 +31,9 @@ public class ApplicationController {
      * @return The applications' web page url.
      */
     @GetMapping("/applications")
-    public String applications() {
+    public String listAllApplications(Model model) {
+        model.addAttribute("applications", applicationRepo.findAll());
+        System.out.println(applicationRepo.findAll());
         return "applications";
     }
 

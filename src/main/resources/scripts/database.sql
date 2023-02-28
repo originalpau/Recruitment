@@ -5827,3 +5827,6 @@ ALTER TABLE ONLY public.person
     
 ALTER TABLE ONLY public.application
     ADD CONSTRAINT application_status_id_fkey FOREIGN KEY (status_id) REFERENCES public.status(status_id);
+
+ALTER TABLE ONLY public.application
+    ADD CONSTRAINT application_person_id_fkey FOREIGN KEY (person_id) REFERENCES public.person(person_id);
