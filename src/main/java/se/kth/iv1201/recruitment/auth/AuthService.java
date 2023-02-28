@@ -15,10 +15,11 @@ import se.kth.iv1201.recruitment.user.UserRepository;
 /**
  * This is the authentication service class, handling login and registration.
  *
- * Declarative transaction management is used. A transaction starts when a method is called from
- * AuthController class, and ends (commit or rollback) when the method returns.
- * The @Transactional annotation enables ACID properties and because of the dependency spring-boot-starter-data-jpa,
- * Spring Transaction Management is enabled by default.
+ * Declarative transaction management is used.
+ * Because of the dependency spring-boot-starter-data-jpa, Spring Transaction Management is enabled by default.
+ * All methods within this class has a transactional boundary.
+ * If an exception is thrown from within the method or its called methods,
+ * the transaction will be rolled back to its previous state.
  */
 @Service
 @Transactional
