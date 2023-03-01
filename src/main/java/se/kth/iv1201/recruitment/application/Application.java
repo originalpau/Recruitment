@@ -6,6 +6,10 @@ import se.kth.iv1201.recruitment.status.Status;
 import se.kth.iv1201.recruitment.user.User;
 import javax.persistence.*;
 
+/**
+ * Application model class, modeling an application from the database. Joins data from tables application,
+ * status (matching status_id to status value), and person (to find information about applicant).
+ */
 
 @Data
 @NoArgsConstructor

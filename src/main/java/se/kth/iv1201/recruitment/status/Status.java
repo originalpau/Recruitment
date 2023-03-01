@@ -3,6 +3,11 @@ package se.kth.iv1201.recruitment.status;
 import lombok.*;
 import javax.persistence.*;
 
+/**
+ * Status model for application statuses.
+ *
+ */
+
 @Getter
 @Setter
 @ToString

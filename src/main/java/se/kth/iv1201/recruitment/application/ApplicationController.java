@@ -28,12 +28,12 @@ public class ApplicationController {
     /**
      * A get request to view applications page. This page can only be accessed by recruiters.
      *
+     * @param model Model objects used by the application page.
      * @return The applications' web page url.
      */
     @GetMapping("/applications")
     public String listAllApplications(Model model) {
         model.addAttribute("applications", applicationRepo.findAll());
-        System.out.println(applicationRepo.findAll());
         return "applications";
     }
 
