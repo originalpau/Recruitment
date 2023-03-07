@@ -12,3 +12,11 @@ Spring boot and Maven has been used to facilitate configurations. The database i
 3. Set environmental variables in `src/main/resources/application.properties` if needed.
 4. Reload (or import) the Maven project in IntelliJ
 5. Start the application from `RecruitmentApplication.java` in IntelliJ
+
+## Deployment
+
+1. Create an account with Heroku
+2. Login and create a new app with your Github repo and link a Heroku PostgreSQL database for plugin
+3. Copy your local PostgreSQL database to Heroku with `heroku pg:push <local-db-name> <heroku-db-name> --app <app-name>`
+4. Edit the `application.properties` configuration file with `spring.datasource.url=jdbc:postgresql://<url>:<port>/<database>?user=<username>&password=<password>`
+5. Build application on Heroku
