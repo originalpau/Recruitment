@@ -18,5 +18,5 @@ Spring boot and Maven has been used to facilitate configurations. The database i
 1. Create an account with Heroku
 2. Login and create a new app with your Github repo and link a Heroku PostgreSQL database for plugin
 3. Copy your local PostgreSQL database to Heroku with `heroku pg:push <local-db-name> <heroku-db-name> --app <app-name>`
-4. Edit the `application.properties` configuration file with `spring.datasource.url=jdbc:postgresql://<url>:<port>/<database>?user=<username>&password=<password>`
+4. Edit the `application.properties` configuration file with your heroku database url and create `system.properties` in root context and set your runtime java version.
 5. Build application on Heroku
