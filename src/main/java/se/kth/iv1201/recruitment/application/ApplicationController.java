@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ApplicationController {
 
     @Autowired
-    private ApplicationRepository applicationRepo;
+    private ApplicationService applicationService;
 
     /**
      * No page is specified, show home page.
@@ -33,7 +33,7 @@ public class ApplicationController {
      */
     @GetMapping("/applications")
     public String listAllApplications(Model model) {
-        model.addAttribute("applications", applicationRepo.findAll());
+        model.addAttribute("applications", applicationService.getApplications());
         return "applications";
     }
 
